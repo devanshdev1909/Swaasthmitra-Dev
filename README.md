@@ -71,7 +71,7 @@ It aims to bring accessible healthcare services to users by offering:
 
 ```bash
 # Clone the repository
-git clone https://github.com/Harsh-shrivastav/swaasthmitra.git
+git clone [https://github.com/devanshdev1909/Swaasthmitra-Dev.git]
 cd swaasthmitra
 
 # Install dependencies
