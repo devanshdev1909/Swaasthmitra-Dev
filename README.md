@@ -1,6 +1,6 @@
 # Swaasthmitra — AI-Powered Healthcare Platform 🚑
 
-🔗 **Live Demo:** [swaasthmitra-2yu8.vercel.app](https://swaasthmitra-three.vercel.app/)  
+🔗 **Live Demo:** [https://swaasthmitra-three.vercel.app/](https://swaasthmitra-three.vercel.app/)  
 💻 **Source Code:** [GitHub Repository](https://github.com/devanshdev1909/Swaasthmitra-Dev.git)
 
 ---
