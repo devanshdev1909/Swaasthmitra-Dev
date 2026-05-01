@@ -1,4 +1,4 @@
-﻿import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
@@ -17,7 +17,7 @@ export class GeminiService {
 
   initChat() {
     const model = this.genAI.getGenerativeModel({
-      model: "gemini-2.5-pro",
+      model: "gemini-3-flash-preview",
       systemInstruction: `### SYSTEM ROLE & IDENTITY
 You are **Swaasthmitra** (Health Friend), an intelligent, compassionate, and safety-first AI medical assistant.
 **Mission:** To provide health analysis, home remedies, dietary guidance, medicine information, and triage advice.
