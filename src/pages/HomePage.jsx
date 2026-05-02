@@ -1,65 +1,73 @@
-import { Link } from 'react-router-dom';
-import { FaStethoscope, FaCalendarAlt, FaMapMarkedAlt, FaUserMd, FaAmbulance, FaHeartbeat, FaVideo } from 'react-icons/fa';
-import { useLanguage } from '../context/LanguageContext';
+import { Link } from "react-router-dom";
+import {
+  FaStethoscope,
+  FaCalendarAlt,
+  FaMapMarkedAlt,
+  FaUserMd,
+  FaAmbulance,
+  FaHeartbeat,
+  FaVideo,
+} from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
 
 const HomePage = () => {
   const { t } = useLanguage();
   const features = [
     {
-      id: 'consultation',
-      title: t('home.consultation'),
-      description: t('home.consultation.desc'),
+      id: "consultation",
+      title: t("home.consultation"),
+      description: t("home.consultation.desc"),
       icon: <FaStethoscope className="text-5xl" />,
-      color: 'from-green-500 to-emerald-600',
-      link: '/consultation',
+      color: "from-green-500 to-emerald-600",
+      link: "/consultation",
     },
     {
-      id: 'schedule',
-      title: t('home.schedule'),
-      description: t('home.schedule.desc'),
+      id: "schedule",
+      title: t("home.schedule"),
+      description: t("home.schedule.desc"),
       icon: <FaCalendarAlt className="text-5xl" />,
-      color: 'from-blue-500 to-cyan-600',
-      link: '/schedule',
+      color: "from-blue-500 to-cyan-600",
+      link: "/schedule",
     },
     {
-      id: 'map',
-      title: t('home.map'),
-      description: t('home.map.desc'),
+      id: "map",
+      title: t("home.map"),
+      description: t("home.map.desc"),
       icon: <FaMapMarkedAlt className="text-5xl" />,
-      color: 'from-purple-500 to-pink-600',
-      link: '/map',
+      color: "from-purple-500 to-pink-600",
+      link: "/map",
     },
     {
-      id: 'doctors',
-      title: t('home.doctors'),
-      description: t('home.doctors.desc'),
+      id: "doctors",
+      title: t("home.doctors"),
+      description: t("home.doctors.desc"),
       icon: <FaUserMd className="text-5xl" />,
-      color: 'from-orange-500 to-red-600',
-      link: '/doctors',
+      color: "from-orange-500 to-red-600",
+      link: "/doctors",
     },
     {
-      id: 'emergency',
-      title: t('home.emergency'),
-      description: t('home.emergency.desc'),
+      id: "emergency",
+      title: t("home.emergency"),
+      description: t("home.emergency.desc"),
       icon: <FaAmbulance className="text-5xl" />,
-      color: 'from-red-500 to-rose-600',
-      link: '/emergency',
+      color: "from-red-500 to-rose-600",
+      link: "/emergency",
     },
     {
-      id: 'health-records',
-      title: t('home.records'),
-      description: t('home.records.desc'),
+      id: "health-records",
+      title: t("home.records"),
+      description: t("home.records.desc"),
       icon: <FaHeartbeat className="text-5xl" />,
-      color: 'from-teal-500 to-green-600',
-      link: '/records',
+      color: "from-teal-500 to-green-600",
+      link: "/records",
     },
     {
-      id: 'video-consult',
-      title: t('video.title'),
-      description: t('video.subtitle'),
+      id: "video-consult",
+      title: t("video.title"),
+      description: t("video.subtitle"),
       icon: <FaVideo className="text-5xl" />,
-      color: 'from-indigo-500 to-blue-600',
-      link: '/video-consult',
+      color: "from-indigo-500 to-blue-600",
+      link: "/video-consult",
     },
   ];
 
@@ -69,10 +77,10 @@ const HomePage = () => {
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            {t('home.title')}
+            {t("home.title")}
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-            {t('home.subtitle')}
+            {t("home.subtitle")}
           </p>
           <div className="inline-flex items-center space-x-2 bg-green-100 text-green-800 px-6 py-3 rounded-full">
             <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
@@ -89,12 +97,16 @@ const HomePage = () => {
               className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
             >
               {/* Gradient Background */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-              
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+              ></div>
+
               {/* Content */}
               <div className="relative p-8">
                 {/* Icon */}
-                <div className={`w-20 h-20 rounded-xl bg-gradient-to-br ${feature.color} text-white flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                <div
+                  className={`w-20 h-20 rounded-xl bg-gradient-to-br ${feature.color} text-white flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                >
                   {feature.icon}
                 </div>
 
@@ -104,15 +116,23 @@ const HomePage = () => {
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-600 mb-4">
-                  {feature.description}
-                </p>
+                <p className="text-gray-600 mb-4">{feature.description}</p>
 
                 {/* Action */}
                 <div className="flex items-center text-primary font-semibold group-hover:text-primary-dark transition-colors">
                   <span>Get Started</span>
-                  <svg className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <svg
+                    className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </div>
               </div>

@@ -1,17 +1,17 @@
-import { Routes, Route } from 'react-router-dom';
-import { ConsultationProvider } from './context/ConsultationContext';
-import { LanguageProvider } from './context/LanguageContext';
-import LandingPage from './pages/LandingPage';
-import HomePage from './pages/HomePage';
-import ConsultationPage from './pages/ConsultationPage';
-import SchedulePage from './pages/SchedulePage';
-import MapPage from './pages/MapPage';
-import DoctorsPage from './pages/DoctorsPage';
-import EmergencyPage from './pages/EmergencyPage';
-import RecordsPage from './pages/RecordsPage';
-import VideoConsultPage from './pages/VideoConsultPage';
-import Header from './components/Header';
-import ScrollToTop from './components/ScrollToTop';
+import { Routes, Route } from "react-router-dom";
+import { ConsultationProvider } from "./context/ConsultationContext";
+import { LanguageProvider } from "./context/LanguageContext";
+import LandingPage from "./pages/LandingPage";
+import HomePage from "./pages/HomePage";
+import ConsultationPage from "./pages/ConsultationPage";
+import SchedulePage from "./pages/SchedulePage";
+import MapPage from "./pages/MapPage";
+import DoctorsPage from "./pages/DoctorsPage";
+import EmergencyPage from "./pages/EmergencyPage";
+import RecordsPage from "./pages/RecordsPage";
+import VideoConsultPage from "./pages/VideoConsultPage";
+import Header from "./components/Header";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (

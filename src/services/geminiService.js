@@ -3,14 +3,12 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
 export class GeminiService {
-  private apiKey: string;
-  private genAI: GoogleGenerativeAI;
-  private chatSession: any = null;
+  chatSession = null;
 
   constructor() {
-    this.apiKey = GEMINI_API_KEY || '';
+    this.apiKey = GEMINI_API_KEY || "";
     if (!this.apiKey) {
-      console.warn('Gemini API key not configured');
+      console.warn("Gemini API key not configured");
     }
     this.genAI = new GoogleGenerativeAI(this.apiKey);
   }
@@ -96,7 +94,9 @@ If a user asks about a specific medicine:
         },
         {
           role: "model",
-          parts: [{ text: `Namaste! 👋 I'm **Swaasthmitra**, your AI health assistant.
+          parts: [
+            {
+              text: `Namaste! 👋 I'm **Swaasthmitra**, your AI health assistant.
 
 I'm here to help with health concerns, home remedies, dietary guidance, and medical information—with a focus on keeping you safe.
 
@@ -108,7 +108,9 @@ To assist you better, please share:
  **How long have you had these symptoms?**
  **Any known allergies?**
 
-I'm ready to listen. ` }],
+I'm ready to listen. `,
+            },
+          ],
         },
       ],
       generationConfig: {
@@ -120,9 +122,9 @@ I'm ready to listen. ` }],
     return this.chatSession;
   }
 
-  async generateSummary(_conversationHistory: string): Promise<string> {
+  async generateSummary(_conversationHistory) {
     if (!this.chatSession) {
-      throw new Error('No active chat session');
+      throw new Error("No active chat session");
     }
 
     try {
@@ -152,62 +154,67 @@ Keep it professional and brief.`;
       const result = await this.chatSession.sendMessage(summaryPrompt);
       return result.response.text();
     } catch (error) {
-      console.error('Summary generation error:', error);
+      console.error("Summary generation error:", error);
       throw error;
     }
   }
 
-  async sendMessage(message: string): Promise<string> {
+  async sendMessage(message) {
     if (!this.chatSession) {
       this.initChat();
     }
 
     if (!this.apiKey) {
-      throw new Error('Gemini API key not configured. Please check your .env file.');
+      throw new Error(
+        "Gemini API key not configured. Please check your .env file.",
+      );
     }
 
     const maxRetries = 3;
-    let lastError: any;
+    let lastError;
 
     for (let attempt = 0; attempt < maxRetries; attempt++) {
       try {
         const result = await this.chatSession.sendMessage(message);
         const text = result.response.text();
-        
         if (!text) {
-          throw new Error('Empty response from Gemini API');
+          throw new Error("Empty response from Gemini API");
         }
-        
         return text;
-      } catch (error: any) {
+      } catch (error) {
         lastError = error;
-        console.error(`Gemini API Error (attempt ${attempt + 1}/${maxRetries}):`, error);
-        
+        console.error(
+          `Gemini API Error (attempt ${attempt + 1}/${maxRetries}):`,
+          error,
+        );
         // Check for rate limit errors
-        const errorMessage = error.message?.toLowerCase() || '';
-        const isRateLimitError = errorMessage.includes('quota') || 
-                                 errorMessage.includes('resource_exhausted') ||
-                                 errorMessage.includes('429');
-        
+        const errorMessage = error.message?.toLowerCase() || "";
+        const isRateLimitError =
+          errorMessage.includes("quota") ||
+          errorMessage.includes("resource_exhausted") ||
+          errorMessage.includes("429");
         // If it's a rate limit error and we have retries left, wait and retry
         if (isRateLimitError && attempt < maxRetries - 1) {
           // Exponential backoff: 1s, 2s, 4s
           const delayMs = Math.pow(2, attempt) * 1000;
           console.log(`Rate limit detected. Retrying in ${delayMs}ms...`);
-          await new Promise(resolve => setTimeout(resolve, delayMs));
+          await new Promise((resolve) => setTimeout(resolve, delayMs));
           continue;
         }
-        
         // For non-rate-limit errors or final attempt, handle accordingly
-        if (error.message?.includes('API key')) {
-          throw new Error('Invalid API key. Please check your VITE_GEMINI_API_KEY in .env file.');
+        if (error.message?.includes("API key")) {
+          throw new Error(
+            "Invalid API key. Please check your VITE_GEMINI_API_KEY in .env file.",
+          );
         }
-        
         if (isRateLimitError) {
-          throw new Error('API quota exceeded. Please try again later or check your Google Cloud quota.');
+          throw new Error(
+            "API quota exceeded. Please try again later or check your Google Cloud quota.",
+          );
         }
-        
-        throw new Error(`Gemini API Error: ${error.message || 'Unknown error'}`);
+        throw new Error(
+          `Gemini API Error: ${error.message || "Unknown error"}`,
+        );
       }
     }
 

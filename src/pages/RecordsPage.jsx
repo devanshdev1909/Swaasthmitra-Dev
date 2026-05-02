@@ -1,39 +1,50 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FaHeartbeat, FaFileMedical, FaPills, FaVial, FaAllergies, FaPlus, FaDownload, FaTrash, FaEdit, FaTimes, FaSave } from 'react-icons/fa';
-import { db, HealthRecord, PersonalInfo } from '../services/database';
-import { useLanguage } from '../context/LanguageContext';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  FaHeartbeat,
+  FaFileMedical,
+  FaPills,
+  FaVial,
+  FaAllergies,
+  FaPlus,
+  FaDownload,
+  FaTrash,
+  FaEdit,
+  FaTimes,
+  FaSave,
+} from "react-icons/fa";
+import { db } from "../services/database";
+import { useLanguage } from "../context/LanguageContext";
 
 const RecordsPage = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'all' | 'prescriptions' | 'reports' | 'visits'>('all');
+  const [activeTab, setActiveTab] = useState("all");
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditPersonalInfo, setShowEditPersonalInfo] = useState(false);
-  const [records, setRecords] = useState<HealthRecord[]>([]);
-  const [editingRecord, setEditingRecord] = useState<HealthRecord | null>(null);
+  const [records, setRecords] = useState([]);
+  const [editingRecord, setEditingRecord] = useState(null);
   const [loading, setLoading] = useState(true);
-  
   // Form state for new/edit record
-  const [formData, setFormData] = useState<Partial<HealthRecord>>({
-    type: 'prescription',
-    title: '',
-    date: new Date().toISOString().split('T')[0],
-    doctor: '',
-    hospital: '',
-    notes: '',
-    attachments: []
+  const [formData, setFormData] = useState({
+    type: "prescription",
+    title: "",
+    date: new Date().toISOString().split("T")[0],
+    doctor: "",
+    hospital: "",
+    notes: "",
+    attachments: [],
   });
 
   // Personal info state
-  const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
-    bloodGroup: 'O+',
-    height: '175 cm',
-    weight: '70 kg',
-    allergies: ['Penicillin', 'Peanuts'],
-    chronicConditions: ['None'],
-    emergencyContact: '+91-9876543210',
-    updatedAt: new Date()
+  const [personalInfo, setPersonalInfo] = useState({
+    bloodGroup: "O+",
+    height: "175 cm",
+    weight: "70 kg",
+    allergies: ["Penicillin", "Peanuts"],
+    chronicConditions: ["None"],
+    emergencyContact: "+91-9876543210",
+    updatedAt: new Date(),
   });
 
   const [personalInfoForm, setPersonalInfoForm] = useState({ ...personalInfo });
@@ -47,43 +58,46 @@ const RecordsPage = () => {
   const loadRecords = async () => {
     try {
       setLoading(true);
-      const allRecords = await db.healthRecords.orderBy('date').reverse().toArray();
-      
+      const allRecords = await db.healthRecords
+        .orderBy("date")
+        .reverse()
+        .toArray();
       // If no records, add sample data
       if (allRecords.length === 0) {
-        const sampleRecords: HealthRecord[] = [
+        const sampleRecords = [
           {
-            type: 'prescription',
-            title: 'Fever Medication',
-            date: '2024-11-28',
-            doctor: 'Dr. Rajesh Kumar',
-            hospital: 'Apollo Hospital',
-            notes: 'Paracetamol 500mg - 3 times daily for 5 days',
-            attachments: ['prescription_001.pdf'],
-            createdAt: new Date('2024-11-28'),
-            updatedAt: new Date('2024-11-28')
+            type: "prescription",
+            title: "Fever Medication",
+            date: "2024-11-28",
+            doctor: "Dr. Rajesh Kumar",
+            hospital: "Apollo Hospital",
+            notes: "Paracetamol 500mg - 3 times daily for 5 days",
+            attachments: ["prescription_001.pdf"],
+            createdAt: new Date("2024-11-28"),
+            updatedAt: new Date("2024-11-28"),
           },
           {
-            type: 'report',
-            title: 'Blood Test Results',
-            date: '2024-11-25',
-            doctor: 'Dr. Priya Sharma',
-            hospital: 'Max Lab',
-            notes: 'Complete Blood Count - All parameters normal',
-            attachments: ['blood_test_report.pdf'],
-            createdAt: new Date('2024-11-25'),
-            updatedAt: new Date('2024-11-25')
+            type: "report",
+            title: "Blood Test Results",
+            date: "2024-11-25",
+            doctor: "Dr. Priya Sharma",
+            hospital: "Max Lab",
+            notes: "Complete Blood Count - All parameters normal",
+            attachments: ["blood_test_report.pdf"],
+            createdAt: new Date("2024-11-25"),
+            updatedAt: new Date("2024-11-25"),
           },
           {
-            type: 'visit',
-            title: 'General Checkup',
-            date: '2024-11-20',
-            doctor: 'Dr. Amit Patel',
-            hospital: 'Fortis Hospital',
-            notes: 'Routine checkup - No issues found. BP: 120/80, Weight: 70kg',
-            createdAt: new Date('2024-11-20'),
-            updatedAt: new Date('2024-11-20')
-          }
+            type: "visit",
+            title: "General Checkup",
+            date: "2024-11-20",
+            doctor: "Dr. Amit Patel",
+            hospital: "Fortis Hospital",
+            notes:
+              "Routine checkup - No issues found. BP: 120/80, Weight: 70kg",
+            createdAt: new Date("2024-11-20"),
+            updatedAt: new Date("2024-11-20"),
+          },
         ];
         await db.healthRecords.bulkAdd(sampleRecords);
         setRecords(sampleRecords);
@@ -91,7 +105,7 @@ const RecordsPage = () => {
         setRecords(allRecords);
       }
     } catch (error) {
-      console.error('Failed to load records:', error);
+      console.error("Failed to load records:", error);
     } finally {
       setLoading(false);
     }
@@ -108,21 +122,21 @@ const RecordsPage = () => {
         await db.personalInfo.add(personalInfo);
       }
     } catch (error) {
-      console.error('Failed to load personal info:', error);
+      console.error("Failed to load personal info:", error);
     }
   };
 
   const handleAddRecord = async () => {
     if (!formData.title || !formData.notes) {
-      alert('Please fill in required fields (Title and Notes)');
+      alert("Please fill in required fields (Title and Notes)");
       return;
     }
 
     try {
-      const newRecord: HealthRecord = {
-        ...formData as HealthRecord,
+      const newRecord = {
+        ...formData,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       };
 
       await db.healthRecords.add(newRecord);
@@ -130,40 +144,44 @@ const RecordsPage = () => {
       setShowAddModal(false);
       resetForm();
     } catch (error) {
-      console.error('Failed to add record:', error);
-      alert('Failed to add record. Please try again.');
+      console.error("Failed to add record:", error);
+      alert("Failed to add record. Please try again.");
     }
   };
 
   const handleEditRecord = async () => {
     if (!editingRecord?.id || !formData.title || !formData.notes) {
-      alert('Please fill in required fields');
+      alert("Please fill in required fields");
       return;
     }
 
     try {
       await db.healthRecords.update(editingRecord.id, {
         ...formData,
-        updatedAt: new Date()
+        updatedAt: new Date(),
       });
       await loadRecords();
       setEditingRecord(null);
       setShowAddModal(false);
       resetForm();
     } catch (error) {
-      console.error('Failed to update record:', error);
-      alert('Failed to update record. Please try again.');
+      console.error("Failed to update record:", error);
+      alert("Failed to update record. Please try again.");
     }
   };
 
-  const handleDeleteRecord = async (id: number) => {
-    if (window.confirm('Are you sure you want to delete this record? This action cannot be undone.')) {
+  const handleDeleteRecord = async (id) => {
+    if (
+      window.confirm(
+        "Are you sure you want to delete this record? This action cannot be undone.",
+      )
+    ) {
       try {
         await db.healthRecords.delete(id);
         await loadRecords();
       } catch (error) {
-        console.error('Failed to delete record:', error);
-        alert('Failed to delete record. Please try again.');
+        console.error("Failed to delete record:", error);
+        alert("Failed to delete record. Please try again.");
       }
     }
   };
@@ -173,23 +191,23 @@ const RecordsPage = () => {
       if (personalInfo.id) {
         await db.personalInfo.update(personalInfo.id, {
           ...personalInfoForm,
-          updatedAt: new Date()
+          updatedAt: new Date(),
         });
       } else {
         await db.personalInfo.add({
           ...personalInfoForm,
-          updatedAt: new Date()
+          updatedAt: new Date(),
         });
       }
       setPersonalInfo(personalInfoForm);
       setShowEditPersonalInfo(false);
     } catch (error) {
-      console.error('Failed to save personal info:', error);
-      alert('Failed to save personal info. Please try again.');
+      console.error("Failed to save personal info:", error);
+      alert("Failed to save personal info. Please try again.");
     }
   };
 
-  const openEditModal = (record: HealthRecord) => {
+  const openEditModal = (record) => {
     setEditingRecord(record);
     setFormData({
       type: record.type,
@@ -198,20 +216,20 @@ const RecordsPage = () => {
       doctor: record.doctor,
       hospital: record.hospital,
       notes: record.notes,
-      attachments: record.attachments
+      attachments: record.attachments,
     });
     setShowAddModal(true);
   };
 
   const resetForm = () => {
     setFormData({
-      type: 'prescription',
-      title: '',
-      date: new Date().toISOString().split('T')[0],
-      doctor: '',
-      hospital: '',
-      notes: '',
-      attachments: []
+      type: "prescription",
+      title: "",
+      date: new Date().toISOString().split("T")[0],
+      doctor: "",
+      hospital: "",
+      notes: "",
+      attachments: [],
     });
     setEditingRecord(null);
   };
@@ -222,32 +240,43 @@ const RecordsPage = () => {
     resetForm();
   };
 
-  const filteredRecords = activeTab === 'all' 
-    ? records 
-    : records.filter(r => {
-        if (activeTab === 'prescriptions') return r.type === 'prescription';
-        if (activeTab === 'reports') return r.type === 'report';
-        if (activeTab === 'visits') return r.type === 'visit';
-        return true;
-      });
+  const filteredRecords =
+    activeTab === "all"
+      ? records
+      : records.filter((r) => {
+          if (activeTab === "prescriptions") return r.type === "prescription";
+          if (activeTab === "reports") return r.type === "report";
+          if (activeTab === "visits") return r.type === "visit";
+          return true;
+        });
 
-  const getTypeIcon = (type: string) => {
+  const getTypeIcon = (type) => {
     switch (type) {
-      case 'prescription': return <FaPills className="text-blue-500" />;
-      case 'report': return <FaVial className="text-purple-500" />;
-      case 'visit': return <FaFileMedical className="text-green-500" />;
-      case 'vaccination': return <FaAllergies className="text-orange-500" />;
-      default: return <FaFileMedical />;
+      case "prescription":
+        return <FaPills className="text-blue-500" />;
+      case "report":
+        return <FaVial className="text-purple-500" />;
+      case "visit":
+        return <FaFileMedical className="text-green-500" />;
+      case "vaccination":
+        return <FaAllergies className="text-orange-500" />;
+      default:
+        return <FaFileMedical />;
     }
   };
 
-  const getTypeColor = (type: string) => {
+  const getTypeColor = (type) => {
     switch (type) {
-      case 'prescription': return 'bg-blue-100 text-blue-800';
-      case 'report': return 'bg-purple-100 text-purple-800';
-      case 'visit': return 'bg-green-100 text-green-800';
-      case 'vaccination': return 'bg-orange-100 text-orange-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case "prescription":
+        return "bg-blue-100 text-blue-800";
+      case "report":
+        return "bg-purple-100 text-purple-800";
+      case "visit":
+        return "bg-green-100 text-green-800";
+      case "vaccination":
+        return "bg-orange-100 text-orange-800";
+      default:
+        return "bg-gray-100 text-gray-800";
     }
   };
 
@@ -258,46 +287,62 @@ const RecordsPage = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <FaHeartbeat className="text-6xl text-teal-600 mx-auto mb-4" />
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">{t('records.title')}</h1>
-            <p className="text-lg text-gray-600">{t('records.subtitle')}</p>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              {t("records.title")}
+            </h1>
+            <p className="text-lg text-gray-600">{t("records.subtitle")}</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Personal Health Info */}
             <div className="lg:col-span-1">
               <div className="card mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">{t('common.personalInfo')}</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                  {t("common.personalInfo")}
+                </h2>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">{t('common.bloodGroup')}</span>
-                    <span className="font-bold text-red-600">{personalInfo.bloodGroup}</span>
+                    <span className="text-gray-600">
+                      {t("common.bloodGroup")}
+                    </span>
+                    <span className="font-bold text-red-600">
+                      {personalInfo.bloodGroup}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">{t('common.height')}</span>
+                    <span className="text-gray-600">{t("common.height")}</span>
                     <span className="font-semibold">{personalInfo.height}</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">{t('common.weight')}</span>
+                    <span className="text-gray-600">{t("common.weight")}</span>
                     <span className="font-semibold">{personalInfo.weight}</span>
                   </div>
                   <div className="py-2">
                     <span className="text-gray-600 block mb-2">Allergies</span>
                     <div className="flex flex-wrap gap-2">
                       {personalInfo.allergies.map((allergy, idx) => (
-                        <span key={idx} className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">
+                        <span
+                          key={idx}
+                          className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold"
+                        >
                           {allergy}
                         </span>
                       ))}
                     </div>
                   </div>
                   <div className="py-2">
-                    <span className="text-gray-600 block mb-2">Emergency Contact</span>
-                    <a href={`tel:${personalInfo.emergencyContact}`} className="text-primary font-semibold">
+                    <span className="text-gray-600 block mb-2">
+                      Emergency Contact
+                    </span>
+                    <a
+                      href={`tel:${personalInfo.emergencyContact}`}
+                      className="text-primary font-semibold"
+                    >
                       {personalInfo.emergencyContact}
                     </a>
                   </div>
                 </div>
-                <button 
+                <button
                   onClick={() => setShowEditPersonalInfo(true)}
                   className="w-full mt-4 btn-secondary py-2 flex items-center justify-center space-x-2"
                 >
@@ -308,19 +353,31 @@ const RecordsPage = () => {
 
               {/* Quick Stats */}
               <div className="card">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">{t('records.quickStats')}</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-4">
+                  {t("records.quickStats")}
+                </h3>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-600">{t('records.totalRecords')}</span>
-                    <span className="font-bold text-2xl text-primary">{records.length}</span>
+                    <span className="text-gray-600">
+                      {t("records.totalRecords")}
+                    </span>
+                    <span className="font-bold text-2xl text-primary">
+                      {records.length}
+                    </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-600">{t('common.prescriptions')}</span>
-                    <span className="font-bold text-xl">{records.filter(r => r.type === 'prescription').length}</span>
+                    <span className="text-gray-600">
+                      {t("common.prescriptions")}
+                    </span>
+                    <span className="font-bold text-xl">
+                      {records.filter((r) => r.type === "prescription").length}
+                    </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-600">{t('common.reports')}</span>
-                    <span className="font-bold text-xl">{records.filter(r => r.type === 'report').length}</span>
+                    <span className="text-gray-600">{t("common.reports")}</span>
+                    <span className="font-bold text-xl">
+                      {records.filter((r) => r.type === "report").length}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -333,36 +390,44 @@ const RecordsPage = () => {
                 <div className="flex justify-between items-center flex-wrap gap-4">
                   <div className="flex space-x-2">
                     <button
-                      onClick={() => setActiveTab('all')}
+                      onClick={() => setActiveTab("all")}
                       className={`px-4 py-2 rounded-lg font-semibold transition ${
-                        activeTab === 'all' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        activeTab === "all"
+                          ? "bg-primary text-white"
+                          : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                       }`}
                     >
-                      {t('common.allRecords')}
+                      {t("common.allRecords")}
                     </button>
                     <button
-                      onClick={() => setActiveTab('prescriptions')}
+                      onClick={() => setActiveTab("prescriptions")}
                       className={`px-4 py-2 rounded-lg font-semibold transition ${
-                        activeTab === 'prescriptions' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        activeTab === "prescriptions"
+                          ? "bg-primary text-white"
+                          : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                       }`}
                     >
-                      {t('common.prescriptions')}
+                      {t("common.prescriptions")}
                     </button>
                     <button
-                      onClick={() => setActiveTab('reports')}
+                      onClick={() => setActiveTab("reports")}
                       className={`px-4 py-2 rounded-lg font-semibold transition ${
-                        activeTab === 'reports' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        activeTab === "reports"
+                          ? "bg-primary text-white"
+                          : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                       }`}
                     >
-                      {t('common.reports')}
+                      {t("common.reports")}
                     </button>
                     <button
-                      onClick={() => setActiveTab('visits')}
+                      onClick={() => setActiveTab("visits")}
                       className={`px-4 py-2 rounded-lg font-semibold transition ${
-                        activeTab === 'visits' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        activeTab === "visits"
+                          ? "bg-primary text-white"
+                          : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                       }`}
                     >
-                      {t('common.visits')}
+                      {t("common.visits")}
                     </button>
                   </div>
                   <button
@@ -370,7 +435,7 @@ const RecordsPage = () => {
                     className="btn-primary flex items-center space-x-2"
                   >
                     <FaPlus />
-                    <span>{t('common.addRecord')}</span>
+                    <span>{t("common.addRecord")}</span>
                   </button>
                 </div>
               </div>
@@ -378,86 +443,104 @@ const RecordsPage = () => {
               {/* Loading State */}
               {loading && (
                 <div className="text-center py-12">
-                  <div className="animate-spin text-6xl text-primary mx-auto mb-4">⏳</div>
-                  <p className="text-gray-600">{t('records.loading')}</p>
+                  <div className="animate-spin text-6xl text-primary mx-auto mb-4">
+                    ⏳
+                  </div>
+                  <p className="text-gray-600">{t("records.loading")}</p>
                 </div>
               )}
 
               {/* Records */}
               {!loading && (
-              <div className="space-y-4">
-                {filteredRecords.map((record) => (
-                  <div key={record.id} className="card hover:shadow-xl transition-all">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-start space-x-4">
-                        <div className="text-3xl mt-1">
-                          {getTypeIcon(record.type)}
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-bold text-gray-900">{record.title}</h3>
-                          <div className="flex items-center space-x-3 mt-2">
-                            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getTypeColor(record.type)}`}>
-                              {record.type.charAt(0).toUpperCase() + record.type.slice(1)}
-                            </span>
-                            <span className="text-sm text-gray-500">{new Date(record.date).toLocaleDateString('en-IN')}</span>
+                <div className="space-y-4">
+                  {filteredRecords.map((record) => (
+                    <div
+                      key={record.id}
+                      className="card hover:shadow-xl transition-all"
+                    >
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-start space-x-4">
+                          <div className="text-3xl mt-1">
+                            {getTypeIcon(record.type)}
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-bold text-gray-900">
+                              {record.title}
+                            </h3>
+                            <div className="flex items-center space-x-3 mt-2">
+                              <span
+                                className={`px-3 py-1 rounded-full text-xs font-semibold ${getTypeColor(record.type)}`}
+                              >
+                                {record.type.charAt(0).toUpperCase() +
+                                  record.type.slice(1)}
+                              </span>
+                              <span className="text-sm text-gray-500">
+                                {new Date(record.date).toLocaleDateString(
+                                  "en-IN",
+                                )}
+                              </span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="flex space-x-2">
-                        <button 
-                          onClick={() => openEditModal(record)}
-                          className="text-blue-500 hover:text-blue-700 p-2"
-                          title="Edit record"
-                        >
-                          <FaEdit />
-                        </button>
-                        <button 
-                          onClick={() => record.id && handleDeleteRecord(record.id)}
-                          className="text-red-500 hover:text-red-700 p-2"
-                          title="Delete record"
-                        >
-                          <FaTrash />
-                        </button>
-                      </div>
-                    </div>
-
-                    {record.doctor && (
-                      <div className="text-sm text-gray-600 mb-2">
-                        <strong>Doctor:</strong> {record.doctor}
-                      </div>
-                    )}
-                    {record.hospital && (
-                      <div className="text-sm text-gray-600 mb-2">
-                        <strong>Hospital:</strong> {record.hospital}
-                      </div>
-                    )}
-                    <div className="text-gray-700 mb-4">
-                      {record.notes}
-                    </div>
-
-                    {record.attachments && record.attachments.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
-                        {record.attachments.map((attachment, idx) => (
+                        <div className="flex space-x-2">
                           <button
-                            key={idx}
-                            className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg flex items-center space-x-2 text-sm font-semibold transition"
+                            onClick={() => openEditModal(record)}
+                            className="text-blue-500 hover:text-blue-700 p-2"
+                            title="Edit record"
                           >
-                            <FaDownload />
-                            <span>{attachment}</span>
+                            <FaEdit />
                           </button>
-                        ))}
+                          <button
+                            onClick={() =>
+                              record.id && handleDeleteRecord(record.id)
+                            }
+                            className="text-red-500 hover:text-red-700 p-2"
+                            title="Delete record"
+                          >
+                            <FaTrash />
+                          </button>
+                        </div>
                       </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+
+                      {record.doctor && (
+                        <div className="text-sm text-gray-600 mb-2">
+                          <strong>Doctor:</strong> {record.doctor}
+                        </div>
+                      )}
+                      {record.hospital && (
+                        <div className="text-sm text-gray-600 mb-2">
+                          <strong>Hospital:</strong> {record.hospital}
+                        </div>
+                      )}
+                      <div className="text-gray-700 mb-4">{record.notes}</div>
+
+                      {record.attachments && record.attachments.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {record.attachments.map((attachment, idx) => (
+                            <button
+                              key={idx}
+                              className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg flex items-center space-x-2 text-sm font-semibold transition"
+                            >
+                              <FaDownload />
+                              <span>{attachment}</span>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               )}
 
               {!loading && filteredRecords.length === 0 && (
                 <div className="text-center py-12 card">
                   <FaFileMedical className="text-6xl text-gray-300 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-gray-600 mb-2">{t('records.emptyTitle')}</h3>
-                  <p className="text-gray-500 mb-4">{t('records.emptySubtitle')}</p>
+                  <h3 className="text-2xl font-bold text-gray-600 mb-2">
+                    {t("records.emptyTitle")}
+                  </h3>
+                  <p className="text-gray-500 mb-4">
+                    {t("records.emptySubtitle")}
+                  </p>
                   <button
                     onClick={() => setShowAddModal(true)}
                     className="btn-primary"
@@ -473,7 +556,7 @@ const RecordsPage = () => {
           {/* Back Button */}
           <div className="mt-8 text-center">
             <button
-              onClick={() => navigate('/home')}
+              onClick={() => navigate("/home")}
               className="btn-secondary px-8 py-3"
             >
               Back to Home
@@ -486,7 +569,7 @@ const RecordsPage = () => {
               <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-6 my-8">
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-2xl font-bold text-gray-800">
-                    {editingRecord ? 'Edit Record' : 'Add New Record'}
+                    {editingRecord ? "Edit Record" : "Add New Record"}
                   </h2>
                   <button
                     onClick={closeModal}
@@ -495,7 +578,7 @@ const RecordsPage = () => {
                     <FaTimes />
                   </button>
                 </div>
-                
+
                 <div className="space-y-4">
                   {/* Type Selection */}
                   <div>
@@ -504,7 +587,9 @@ const RecordsPage = () => {
                     </label>
                     <select
                       value={formData.type}
-                      onChange={(e) => setFormData({ ...formData, type: e.target.value as any })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, type: e.target.value })
+                      }
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                     >
                       <option value="prescription">Prescription</option>
@@ -522,8 +607,10 @@ const RecordsPage = () => {
                     <input
                       type="text"
                       value={formData.title}
-                      onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                      placeholder={t('records.form.title.placeholder')}
+                      onChange={(e) =>
+                        setFormData({ ...formData, title: e.target.value })
+                      }
+                      placeholder={t("records.form.title.placeholder")}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                     />
                   </div>
@@ -536,7 +623,9 @@ const RecordsPage = () => {
                     <input
                       type="date"
                       value={formData.date}
-                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, date: e.target.value })
+                      }
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                     />
                   </div>
@@ -548,9 +637,11 @@ const RecordsPage = () => {
                     </label>
                     <input
                       type="text"
-                      value={formData.doctor || ''}
-                      onChange={(e) => setFormData({ ...formData, doctor: e.target.value })}
-                      placeholder={t('records.form.doctor.placeholder')}
+                      value={formData.doctor || ""}
+                      onChange={(e) =>
+                        setFormData({ ...formData, doctor: e.target.value })
+                      }
+                      placeholder={t("records.form.doctor.placeholder")}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                     />
                   </div>
@@ -562,9 +653,11 @@ const RecordsPage = () => {
                     </label>
                     <input
                       type="text"
-                      value={formData.hospital || ''}
-                      onChange={(e) => setFormData({ ...formData, hospital: e.target.value })}
-                      placeholder={t('records.form.hospital.placeholder')}
+                      value={formData.hospital || ""}
+                      onChange={(e) =>
+                        setFormData({ ...formData, hospital: e.target.value })
+                      }
+                      placeholder={t("records.form.hospital.placeholder")}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                     />
                   </div>
@@ -576,8 +669,10 @@ const RecordsPage = () => {
                     </label>
                     <textarea
                       value={formData.notes}
-                      onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                      placeholder={t('records.form.notes.placeholder')}
+                      onChange={(e) =>
+                        setFormData({ ...formData, notes: e.target.value })
+                      }
+                      placeholder={t("records.form.notes.placeholder")}
                       rows={4}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
                     />
@@ -590,8 +685,12 @@ const RecordsPage = () => {
                     </label>
                     <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                       <FaFileMedical className="text-4xl text-gray-400 mx-auto mb-2" />
-                      <p className="text-sm text-gray-500">{t('records.upload.soon')}</p>
-                      <p className="text-xs text-gray-400 mt-1">{t('records.upload.types')}</p>
+                      <p className="text-sm text-gray-500">
+                        {t("records.upload.soon")}
+                      </p>
+                      <p className="text-xs text-gray-400 mt-1">
+                        {t("records.upload.types")}
+                      </p>
                     </div>
                   </div>
 
@@ -605,11 +704,13 @@ const RecordsPage = () => {
                       <span>Cancel</span>
                     </button>
                     <button
-                      onClick={editingRecord ? handleEditRecord : handleAddRecord}
+                      onClick={
+                        editingRecord ? handleEditRecord : handleAddRecord
+                      }
                       className="flex-1 btn-primary py-3 flex items-center justify-center space-x-2"
                     >
                       <FaSave />
-                      <span>{editingRecord ? 'Update' : 'Save'} Record</span>
+                      <span>{editingRecord ? "Update" : "Save"} Record</span>
                     </button>
                   </div>
                 </div>
@@ -622,7 +723,9 @@ const RecordsPage = () => {
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
               <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-6 my-8">
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-bold text-gray-800">{t('records.editPersonalInfo')}</h2>
+                  <h2 className="text-2xl font-bold text-gray-800">
+                    {t("records.editPersonalInfo")}
+                  </h2>
                   <button
                     onClick={() => setShowEditPersonalInfo(false)}
                     className="text-gray-500 hover:text-gray-700 text-3xl leading-none"
@@ -630,13 +733,20 @@ const RecordsPage = () => {
                     <FaTimes />
                   </button>
                 </div>
-                
+
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Blood Group</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Blood Group
+                    </label>
                     <select
                       value={personalInfoForm.bloodGroup}
-                      onChange={(e) => setPersonalInfoForm({ ...personalInfoForm, bloodGroup: e.target.value })}
+                      onChange={(e) =>
+                        setPersonalInfoForm({
+                          ...personalInfoForm,
+                          bloodGroup: e.target.value,
+                        })
+                      }
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                     >
                       <option value="A+">A+</option>
@@ -652,21 +762,35 @@ const RecordsPage = () => {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Height</label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Height
+                      </label>
                       <input
                         type="text"
                         value={personalInfoForm.height}
-                        onChange={(e) => setPersonalInfoForm({ ...personalInfoForm, height: e.target.value })}
+                        onChange={(e) =>
+                          setPersonalInfoForm({
+                            ...personalInfoForm,
+                            height: e.target.value,
+                          })
+                        }
                         placeholder="e.g., 175 cm"
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Weight</label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Weight
+                      </label>
                       <input
                         type="text"
                         value={personalInfoForm.weight}
-                        onChange={(e) => setPersonalInfoForm({ ...personalInfoForm, weight: e.target.value })}
+                        onChange={(e) =>
+                          setPersonalInfoForm({
+                            ...personalInfoForm,
+                            weight: e.target.value,
+                          })
+                        }
                         placeholder="e.g., 70 kg"
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                       />
@@ -674,39 +798,60 @@ const RecordsPage = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Allergies (comma-separated)</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Allergies (comma-separated)
+                    </label>
                     <input
                       type="text"
-                      value={personalInfoForm.allergies.join(', ')}
-                      onChange={(e) => setPersonalInfoForm({ 
-                        ...personalInfoForm, 
-                        allergies: e.target.value.split(',').map(a => a.trim()).filter(a => a) 
-                      })}
+                      value={personalInfoForm.allergies.join(", ")}
+                      onChange={(e) =>
+                        setPersonalInfoForm({
+                          ...personalInfoForm,
+                          allergies: e.target.value
+                            .split(",")
+                            .map((a) => a.trim())
+                            .filter((a) => a),
+                        })
+                      }
                       placeholder="e.g., Penicillin, Peanuts"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Chronic Conditions (comma-separated)</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Chronic Conditions (comma-separated)
+                    </label>
                     <input
                       type="text"
-                      value={personalInfoForm.chronicConditions.join(', ')}
-                      onChange={(e) => setPersonalInfoForm({ 
-                        ...personalInfoForm, 
-                        chronicConditions: e.target.value.split(',').map(c => c.trim()).filter(c => c) 
-                      })}
+                      value={personalInfoForm.chronicConditions.join(", ")}
+                      onChange={(e) =>
+                        setPersonalInfoForm({
+                          ...personalInfoForm,
+                          chronicConditions: e.target.value
+                            .split(",")
+                            .map((c) => c.trim())
+                            .filter((c) => c),
+                        })
+                      }
                       placeholder="e.g., Diabetes, Hypertension"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Emergency Contact</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Emergency Contact
+                    </label>
                     <input
                       type="tel"
                       value={personalInfoForm.emergencyContact}
-                      onChange={(e) => setPersonalInfoForm({ ...personalInfoForm, emergencyContact: e.target.value })}
+                      onChange={(e) =>
+                        setPersonalInfoForm({
+                          ...personalInfoForm,
+                          emergencyContact: e.target.value,
+                        })
+                      }
                       placeholder="+91-9876543210"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                     />

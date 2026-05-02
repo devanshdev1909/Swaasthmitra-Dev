@@ -6,9 +6,9 @@
   "description": "Offline-First AI Healthcare for Rural India",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "clean": "powershell -Command \"if (Test-Path dist) { Remove-Item -Recurse -Force dist }\"",
     "rebuild": "npm run clean && npm run build",
     "update-deps": "npm update && npm audit fix",
@@ -27,8 +27,6 @@
   "homepage": "https://github.com/Harsh-shrivastav/swaasthmitra#readme",
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
     "axios": "^1.7.9",
     "dexie": "^4.0.10",
@@ -39,13 +37,14 @@
     "react-leaflet": "^4.2.1",
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.28.0",
-    "typescript": "^5.7.2",
     "vite": "^6.1.7"
   },
   "devDependencies": {
-    "@types/leaflet": "^1.9.14",
+    "@babel/core": "^7.29.0",
+    "@babel/preset-typescript": "^7.28.5",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
+    "prettier": "^3.8.3",
     "tailwindcss": "^3.4.15"
   }
 }

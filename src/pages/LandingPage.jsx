@@ -1,6 +1,13 @@
-import { Link } from 'react-router-dom';
-import { FaHeartbeat, FaMobileAlt, FaRobot, FaBolt, FaGlobe, FaShieldAlt } from 'react-icons/fa';
-import { useLanguage } from '../context/LanguageContext';
+import { Link } from "react-router-dom";
+import {
+  FaHeartbeat,
+  FaMobileAlt,
+  FaRobot,
+  FaBolt,
+  FaGlobe,
+  FaShieldAlt,
+} from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
 
 const LandingPage = () => {
   const { t } = useLanguage();
@@ -8,33 +15,33 @@ const LandingPage = () => {
   const techFeatures = [
     {
       icon: <FaMobileAlt />,
-      title: t('landing.tech.offline.title'),
-      description: t('landing.tech.offline.desc'),
+      title: t("landing.tech.offline.title"),
+      description: t("landing.tech.offline.desc"),
     },
     {
       icon: <FaRobot />,
-      title: t('landing.tech.edgeai.title'),
-      description: t('landing.tech.edgeai.desc'),
+      title: t("landing.tech.edgeai.title"),
+      description: t("landing.tech.edgeai.desc"),
     },
     {
       icon: <FaGlobe />,
-      title: t('landing.tech.voice.title'),
-      description: t('landing.tech.voice.desc'),
+      title: t("landing.tech.voice.title"),
+      description: t("landing.tech.voice.desc"),
     },
     {
       icon: <FaBolt />,
-      title: t('landing.tech.async.title'),
-      description: t('landing.tech.async.desc'),
+      title: t("landing.tech.async.title"),
+      description: t("landing.tech.async.desc"),
     },
     {
       icon: <FaShieldAlt />,
-      title: t('landing.tech.conflict.title'),
-      description: t('landing.tech.conflict.desc'),
+      title: t("landing.tech.conflict.title"),
+      description: t("landing.tech.conflict.desc"),
     },
     {
       icon: <FaHeartbeat />,
-      title: t('landing.tech.emergency.title'),
-      description: t('landing.tech.emergency.desc'),
+      title: t("landing.tech.emergency.title"),
+      description: t("landing.tech.emergency.desc"),
     },
   ];
   return (
@@ -44,23 +51,23 @@ const LandingPage = () => {
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-block bg-primary/20 text-primary px-6 py-2 rounded-full mb-6 font-semibold">
-              {t('landing.hero.tagline')}
+              {t("landing.hero.tagline")}
             </div>
-            
+
             <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
-              {t('landing.hero.title')}
+              {t("landing.hero.title")}
             </h1>
-            
+
             <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
-              {t('landing.hero.description')}
+              {t("landing.hero.description")}
             </p>
-            
+
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link to="/home" className="btn-primary text-lg px-8 py-3">
-                {t('landing.hero.tryNow')}
+                {t("landing.hero.tryNow")}
               </Link>
               <a href="#features" className="btn-secondary text-lg px-8 py-3">
-                {t('landing.hero.learnMore')}
+                {t("landing.hero.learnMore")}
               </a>
             </div>
           </div>
@@ -71,9 +78,11 @@ const LandingPage = () => {
       <section id="features" className="py-20 px-4 bg-gray-50">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">{t('landing.features.title')}</h2>
+            <h2 className="text-4xl font-bold mb-4">
+              {t("landing.features.title")}
+            </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              {t('landing.features.subtitle')}
+              {t("landing.features.subtitle")}
             </p>
           </div>
 
@@ -84,28 +93,30 @@ const LandingPage = () => {
                 <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center mr-4">
                   <FaHeartbeat className="text-white text-2xl" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">{t('landing.problem.title')}</h3>
+                <h3 className="text-2xl font-bold text-gray-900">
+                  {t("landing.problem.title")}
+                </h3>
               </div>
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <span className="text-red-500 mr-2">•</span>
-                  <span>{t('landing.problem.point1')}</span>
+                  <span>{t("landing.problem.point1")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-500 mr-2">•</span>
-                  <span>{t('landing.problem.point2')}</span>
+                  <span>{t("landing.problem.point2")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-500 mr-2">•</span>
-                  <span>{t('landing.problem.point3')}</span>
+                  <span>{t("landing.problem.point3")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-500 mr-2">•</span>
-                  <span>{t('landing.problem.point4')}</span>
+                  <span>{t("landing.problem.point4")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-500 mr-2">•</span>
-                  <span>{t('landing.problem.point5')}</span>
+                  <span>{t("landing.problem.point5")}</span>
                 </li>
               </ul>
             </div>
@@ -116,28 +127,30 @@ const LandingPage = () => {
                 <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mr-4">
                   <FaShieldAlt className="text-white text-2xl" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">{t('landing.solution.title')}</h3>
+                <h3 className="text-2xl font-bold text-gray-900">
+                  {t("landing.solution.title")}
+                </h3>
               </div>
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
-                  <span>{t('landing.solution.point1')}</span>
+                  <span>{t("landing.solution.point1")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
-                  <span>{t('landing.solution.point2')}</span>
+                  <span>{t("landing.solution.point2")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
-                  <span>{t('landing.solution.point3')}</span>
+                  <span>{t("landing.solution.point3")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
-                  <span>{t('landing.solution.point4')}</span>
+                  <span>{t("landing.solution.point4")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
-                  <span>{t('landing.solution.point5')}</span>
+                  <span>{t("landing.solution.point5")}</span>
                 </li>
               </ul>
             </div>
@@ -149,9 +162,11 @@ const LandingPage = () => {
       <section id="tech" className="py-20 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">{t('landing.tech.title')}</h2>
+            <h2 className="text-4xl font-bold mb-4">
+              {t("landing.tech.title")}
+            </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              {t('landing.tech.subtitle')}
+              {t("landing.tech.subtitle")}
             </p>
           </div>
 
@@ -170,21 +185,29 @@ const LandingPage = () => {
       </section>
 
       {/* Impact Section */}
-      <section id="impact" className="py-20 px-4 bg-gradient-to-br from-primary to-secondary text-white">
+      <section
+        id="impact"
+        className="py-20 px-4 bg-gradient-to-br from-primary to-secondary text-white"
+      >
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">{t('landing.impact.title')}</h2>
+            <h2 className="text-4xl font-bold mb-4">
+              {t("landing.impact.title")}
+            </h2>
             <p className="text-xl opacity-90 max-w-2xl mx-auto">
-              {t('landing.impact.subtitle')}
+              {t("landing.impact.subtitle")}
             </p>
           </div>
 
           <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto mb-12">
             {[
-              { number: '500M+', labelKey: 'landing.impact.ruralPopulation' },
-              { number: '24/7', labelKey: 'landing.impact.healthcareContinuity' },
-              { number: '60%', labelKey: 'landing.impact.reductionWait' },
-              { number: '0', labelKey: 'landing.impact.internetRequired' },
+              { number: "500M+", labelKey: "landing.impact.ruralPopulation" },
+              {
+                number: "24/7",
+                labelKey: "landing.impact.healthcareContinuity",
+              },
+              { number: "60%", labelKey: "landing.impact.reductionWait" },
+              { number: "0", labelKey: "landing.impact.internetRequired" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-5xl font-bold mb-2">{stat.number}</div>
@@ -194,12 +217,15 @@ const LandingPage = () => {
           </div>
 
           <div className="card bg-white text-gray-900 max-w-2xl mx-auto text-center">
-            <h3 className="text-2xl font-bold mb-4">{t('landing.cta.title')}</h3>
-            <p className="text-gray-600 mb-6">
-              {t('landing.cta.description')}
-            </p>
-            <Link to="/consultation" className="btn-primary text-lg px-8 py-3 inline-block">
-              {t('landing.cta.button')}
+            <h3 className="text-2xl font-bold mb-4">
+              {t("landing.cta.title")}
+            </h3>
+            <p className="text-gray-600 mb-6">{t("landing.cta.description")}</p>
+            <Link
+              to="/consultation"
+              className="btn-primary text-lg px-8 py-3 inline-block"
+            >
+              {t("landing.cta.button")}
             </Link>
           </div>
         </div>
@@ -212,32 +238,74 @@ const LandingPage = () => {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <img src="/logo.png" alt="Logo" className="w-8 h-8" />
-                <span className="text-xl font-bold">{t('header.appName')}</span>
+                <span className="text-xl font-bold">{t("header.appName")}</span>
               </div>
-              <p className="text-gray-400">{t('landing.footer.tagline')}</p>
+              <p className="text-gray-400">{t("landing.footer.tagline")}</p>
             </div>
             <div>
-              <h4 className="font-bold mb-4">{t('landing.footer.sections.product')}</h4>
+              <h4 className="font-bold mb-4">
+                {t("landing.footer.sections.product")}
+              </h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#features" className="hover:text-white">{t('landing.footer.links.features')}</a></li>
-                <li><a href="#tech" className="hover:text-white">{t('landing.footer.links.tech')}</a></li>
-                <li><a href="#impact" className="hover:text-white">{t('landing.footer.links.impact')}</a></li>
+                <li>
+                  <a href="#features" className="hover:text-white">
+                    {t("landing.footer.links.features")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#tech" className="hover:text-white">
+                    {t("landing.footer.links.tech")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#impact" className="hover:text-white">
+                    {t("landing.footer.links.impact")}
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">{t('landing.footer.sections.company')}</h4>
+              <h4 className="font-bold mb-4">
+                {t("landing.footer.sections.company")}
+              </h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white">{t('landing.footer.links.about')}</a></li>
-                <li><a href="#" className="hover:text-white">{t('landing.footer.links.blog')}</a></li>
-                <li><a href="#" className="hover:text-white">{t('landing.footer.links.careers')}</a></li>
+                <li>
+                  <a href="#" className="hover:text-white">
+                    {t("landing.footer.links.about")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white">
+                    {t("landing.footer.links.blog")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white">
+                    {t("landing.footer.links.careers")}
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">{t('landing.footer.sections.legal')}</h4>
+              <h4 className="font-bold mb-4">
+                {t("landing.footer.sections.legal")}
+              </h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white">{t('landing.footer.links.privacy')}</a></li>
-                <li><a href="#" className="hover:text-white">{t('landing.footer.links.terms')}</a></li>
-                <li><a href="#" className="hover:text-white">{t('landing.footer.links.contact')}</a></li>
+                <li>
+                  <a href="#" className="hover:text-white">
+                    {t("landing.footer.links.privacy")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white">
+                    {t("landing.footer.links.terms")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white">
+                    {t("landing.footer.links.contact")}
+                  </a>
+                </li>
               </ul>
             </div>
           </div>

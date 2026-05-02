@@ -1,16 +1,16 @@
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import { FaBars, FaTimes, FaGlobe } from 'react-icons/fa';
-import { useLanguage } from '../context/LanguageContext';
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { FaBars, FaTimes, FaGlobe } from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, toggleLanguage, t } = useLanguage();
 
   const navLinks = [
-    { name: t('header.features'), href: '/#features' },
-    { name: t('header.technology'), href: '/#tech' },
-    { name: t('header.impact'), href: '/#impact' },
+    { name: t("header.features"), href: "/#features" },
+    { name: t("header.technology"), href: "/#tech" },
+    { name: t("header.impact"), href: "/#impact" },
   ];
 
   return (
@@ -20,7 +20,9 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img src="/logo.png" alt="Logo" className="w-10 h-10" />
-            <span className="text-2xl font-bold text-primary">{t('header.appName')}</span>
+            <span className="text-2xl font-bold text-primary">
+              {t("header.appName")}
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -34,7 +36,7 @@ const Header = () => {
                 {link.name}
               </a>
             ))}
-            
+
             {/* Language Toggle */}
             <button
               onClick={toggleLanguage}
@@ -42,11 +44,13 @@ const Header = () => {
               title="Toggle Language"
             >
               <FaGlobe className="text-sm" />
-              <span className="text-sm font-medium">{language === 'en' ? 'हिं' : 'EN'}</span>
+              <span className="text-sm font-medium">
+                {language === "en" ? "हिं" : "EN"}
+              </span>
             </button>
 
             <Link to="/consultation" className="btn-primary">
-              {t('header.startConsultation')}
+              {t("header.startConsultation")}
             </Link>
           </nav>
 
@@ -73,7 +77,7 @@ const Header = () => {
                 {link.name}
               </a>
             ))}
-            
+
             {/* Mobile Language Toggle */}
             <button
               onClick={() => {
@@ -84,7 +88,7 @@ const Header = () => {
             >
               <FaGlobe className="text-sm" />
               <span className="text-sm font-medium">
-                {language === 'en' ? 'Switch to Hindi' : 'अंग्रेजी में बदलें'}
+                {language === "en" ? "Switch to Hindi" : "अंग्रेजी में बदलें"}
               </span>
             </button>
 
@@ -93,7 +97,7 @@ const Header = () => {
               className="block btn-primary text-center"
               onClick={() => setIsMenuOpen(false)}
             >
-              {t('header.startConsultation')}
+              {t("header.startConsultation")}
             </Link>
           </nav>
         )}
