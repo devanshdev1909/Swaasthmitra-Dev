@@ -13,9 +13,9 @@ const translations = {
 
     // Landing Page
     "landing.hero.tagline": "Healthcare that never sleeps",
-    "landing.hero.title": "Offline-First AI Healthcare for Rural India",
+    "landing.hero.title": "Accessible AI Healthcare for Rural India",
     "landing.hero.description":
-      "Swaasthmitra bridges the healthcare gap in underserved rural regions. Get instant medical advice, emergency alerts, and resource mapping—even without internet.",
+      "Swaasthmitra bridges the healthcare gap in underserved rural regions. Get instant medical advice, emergency alerts, and digital health records.",
     "landing.hero.tryNow": "Try Now",
     "landing.hero.learnMore": "Learn More",
     "landing.features.title": "The Challenge & Our Solution",
@@ -23,39 +23,37 @@ const translations = {
       "Rural healthcare systems face critical gaps when frontline workers are unavailable. Swaasthmitra fills that gap 24/7.",
     "landing.problem.title": "The Problem",
     "landing.problem.point1": "No continuity when ASHA workers are unavailable",
-    "landing.problem.point2": "Unreliable internet connectivity in rural areas",
+    "landing.problem.point2": "Limited access to qualified doctors in remote areas",
     "landing.problem.point3":
       "Patients panic during emergencies without immediate guidance",
     "landing.problem.point4":
       "No access to maternal care or preventive health checks",
     "landing.problem.point5": "Missed vaccinations and critical health records",
     "landing.solution.title": "Swaasthmitra's Solution",
-    "landing.solution.point1": "24/7 AI medical companion that works offline",
+    "landing.solution.point1": "24/7 AI medical companion for preliminary guidance",
     "landing.solution.point2":
       "Voice-first interface in Hindi & English for accessibility",
     "landing.solution.point3":
       "Instant Red Alert system for critical emergencies",
     "landing.solution.point4":
-      "Offline resource mapping to nearby health centers",
-    "landing.solution.point5":
       "Async appointment scheduler with auto-sync capabilities",
 
     // Technology Section
     "landing.tech.title": "Technical Architecture",
     "landing.tech.subtitle":
       "Built for resilience, reliability, and real-world rural healthcare challenges.",
-    "landing.tech.offline.title": "Offline-First Architecture",
+    "landing.tech.offline.title": "Resilient Architecture",
     "landing.tech.offline.desc":
-      "All core logic runs locally. AI decision trees process symptoms without cloud dependency.",
+      "Optimized for low-bandwidth environments with intelligent caching for health records.",
     "landing.tech.edgeai.title": "Edge AI Model",
     "landing.tech.edgeai.desc":
       "Lightweight ML model optimized for rural connectivity. Gemini API for advanced analysis.",
     "landing.tech.voice.title": "Voice Processing",
     "landing.tech.voice.desc":
-      "Speech-to-text and text-to-speech in Hindi/English. Works offline using on-device processing.",
+      "Speech-to-text and text-to-speech in Hindi/English for natural interaction.",
     "landing.tech.async.title": "Async Data Sync",
     "landing.tech.async.desc":
-      "Appointments and records queued offline, auto-sync with database when connectivity returns.",
+      "Appointments and records queued for sync when connectivity is stable.",
     "landing.tech.conflict.title": "Conflict Resolution",
     "landing.tech.conflict.desc":
       "Handles multiple users sharing one device. Smart caching prevents duplicate entries.",
@@ -70,12 +68,10 @@ const translations = {
     "landing.impact.ruralPopulation": "Rural Population Reached",
     "landing.impact.healthcareContinuity": "Healthcare Continuity",
     "landing.impact.reductionWait": "Reduction in Wait Times",
-    "landing.impact.internetRequired": "Internet Required",
-
-    // CTA Section
+    "landing.impact.internetRequired": "Connectivity Optimized",
     "landing.cta.title": "Join the Healthcare Revolution",
     "landing.cta.description":
-      "Swaasthmitra is empowering rural communities with accessible, offline-first healthcare. Be part of this mission.",
+      "Swaasthmitra is empowering rural communities with accessible, AI-powered healthcare. Be part of this mission.",
     "landing.cta.button": "Get Started Today",
 
     // Home Page
@@ -93,8 +89,6 @@ const translations = {
     "home.records.desc": "Manage your medical history and appointments",
     "home.schedule": "Schedule Appointment",
     "home.schedule.desc": "Book appointments with healthcare providers",
-    "home.map": "Healthcare Map",
-    "home.map.desc": "Find nearby hospitals and clinics",
 
     // Consultation Page
     "consultation.title": "Medical Consultation",
@@ -127,7 +121,6 @@ const translations = {
     "doctors.specialty": "Specialty",
     "doctors.location": "Location",
     "doctors.book": "Book Appointment",
-    "doctors.video": "Video Consult",
     "doctors.rating": "Rating",
     "doctors.experience": "years experience",
 
@@ -157,6 +150,7 @@ const translations = {
     "emergency.disclaimerText":
       "This information is for educational purposes only. In case of a medical emergency, always call 108 immediately. Do not attempt advanced medical procedures without proper training. When in doubt, seek professional medical help.",
     "emergency.backToHome": "Back to Home",
+    "emergency.banner.title": "Medical Emergency?",
     "emergency.banner.subtitle":
       "Call 108 for immediate ambulance service across India",
     "emergency.call108Now": "Call 108 Now",
@@ -290,42 +284,10 @@ const translations = {
     "schedule.alertFillRequired": "Please fill in all required fields",
     "schedule.alertPhoneInvalid": "Please enter a valid phone number",
 
-    // Map Page
-    "map.title": "Healthcare Map",
-    "map.subtitle": "Find nearby hospitals, clinics, and healthcare facilities",
-    "map.hospitals": "Hospitals",
-    "map.clinics": "Clinics",
-    "map.pharmacies": "Pharmacies",
-    "map.distance": "Distance",
-    "map.open": "Open Now",
-    "map.emergencyBanner.title": "Medical Emergency?",
-    "map.emergencyBanner.subtitle": "Call for immediate ambulance service",
 
-    // Video Consult Page
-    "video.title": "Video Consultation",
-    "video.subtitle": "Connect with doctors through video call",
-    "video.join": "Join Call",
-    "video.mute": "Mute",
-    "video.camera": "Camera",
-    "video.end": "End Call",
-    "video.connected": "Video Connected",
-    "video.cameraOff": "Camera Off",
-    "video.chatPlaceholder": "Type a message...",
-    "video.connecting.title": "Connecting...",
-    "video.connecting.subtitle": "Setting up your video call with",
-    "video.connecting.permission": "Please allow camera and microphone access",
-    "video.features.title": "Video Consultation Features",
-    "video.features.hd.title": "HD Video Quality",
-    "video.features.hd.desc": "Crystal clear video with adaptive streaming",
-    "video.features.share.title": "Screen Sharing",
-    "video.features.share.desc":
-      "Share reports and test results during consultation",
-    "video.features.chat.title": "Real-time Chat",
-    "video.features.chat.desc":
-      "Text chat alongside video for better communication",
 
     // Landing Footer
-    "landing.footer.tagline": "Offline-First AI Healthcare for Rural India",
+    "landing.footer.tagline": "Accessible AI Healthcare for Rural India",
     "landing.footer.sections.product": "Product",
     "landing.footer.sections.company": "Company",
     "landing.footer.sections.legal": "Legal",
@@ -358,13 +320,7 @@ const translations = {
     "common.personalInfo": "Personal Information",
     "common.appointmentDetails": "Appointment Details",
     "common.viewAppointments": "View My Appointments",
-    "common.searchLocation": "Search by name or location...",
-    "common.allTypes": "All Types",
-    "common.myLocation": "My Location",
-    "common.facilitiesFound": "Facilities Found",
-    "common.directions": "Directions",
     "common.available": "Available",
-    "common.startVideoCall": "Start Video Call",
     "common.currentlyUnavailable": "Currently Unavailable",
     "common.addRecord": "Add Record",
     "common.allRecords": "All Records",
@@ -388,9 +344,9 @@ const translations = {
 
     // Landing Page
     "landing.hero.tagline": "स्वास्थ्य सेवा जो कभी नहीं सोती",
-    "landing.hero.title": "ग्रामीण भारत के लिए ऑफलाइन-फर्स्ट AI स्वास्थ्य सेवा",
+    "landing.hero.title": "ग्रामीण भारत के लिए सुलभ AI स्वास्थ्य सेवा",
     "landing.hero.description":
-      "स्वास्थ्यमित्र वंचित ग्रामीण क्षेत्रों में स्वास्थ्य सेवा की कमी को पाटता है। तुरंत चिकित्सा सलाह, आपातकालीन अलर्ट, और संसाधन मैपिंग प्राप्त करें—बिना इंटरनेट के भी।",
+      "स्वास्थ्यमित्र वंचित ग्रामीण क्षेत्रों में स्वास्थ्य सेवा की कमी को पाटता है। तुरंत चिकित्सा सलाह, आपातकालीन अलर्ट और डिजिटल स्वास्थ्य रिकॉर्ड प्राप्त करें।",
     "landing.hero.tryNow": "अभी आज़माएं",
     "landing.hero.learnMore": "और जानें",
     "landing.features.title": "चुनौती और हमारा समाधान",
@@ -399,8 +355,7 @@ const translations = {
     "landing.problem.title": "समस्या",
     "landing.problem.point1":
       "जब आशा कार्यकर्ता उपलब्ध नहीं होते तो निरंतरता नहीं",
-    "landing.problem.point2":
-      "ग्रामीण क्षेत्रों में अविश्वसनीय इंटरनेट कनेक्टिविटी",
+    "landing.problem.point2": "दूरदराज के इलाकों में योग्य डॉक्टरों तक सीमित पहुंच",
     "landing.problem.point3":
       "तत्काल मार्गदर्शन के बिना आपातकाल में मरीज़ घबराते हैं",
     "landing.problem.point4":
@@ -408,31 +363,28 @@ const translations = {
     "landing.problem.point5":
       "छूटे हुए टीकाकरण और महत्वपूर्ण स्वास्थ्य रिकॉर्ड",
     "landing.solution.title": "स्वास्थ्यमित्र का समाधान",
-    "landing.solution.point1": "24/7 AI चिकित्सा साथी जो ऑफलाइन काम करता है",
+    "landing.solution.point1": "प्रारंभिक मार्गदर्शन के लिए 24/7 AI चिकित्सा साथी",
     "landing.solution.point2":
       "पहुंच के लिए हिंदी और अंग्रेजी में वॉयस-फर्स्ट इंटरफेस",
     "landing.solution.point3": "गंभीर आपातकाल के लिए तुरंत रेड अलर्ट सिस्टम",
-    "landing.solution.point4":
-      "नजदीकी स्वास्थ्य केंद्रों के लिए ऑफलाइन संसाधन मैपिंग",
-    "landing.solution.point5":
-      "ऑटो-सिंक क्षमताओं के साथ एसिंक अपॉइंटमेंट शेड्यूलर",
+    "landing.solution.point4": "ऑटो-सिंक क्षमताओं के साथ एसिंक अपॉइंटमेंट शेड्यूलर",
 
     // Technology Section
     "landing.tech.title": "तकनीकी आर्किटेक्चर",
     "landing.tech.subtitle":
       "लचीलेपन, विश्वसनीयता और वास्तविक ग्रामीण स्वास्थ्य सेवा चुनौतियों के लिए बनाया गया।",
-    "landing.tech.offline.title": "ऑफलाइन-फर्स्ट आर्किटेक्चर",
+    "landing.tech.offline.title": "लचीला आर्किटेक्चर",
     "landing.tech.offline.desc":
-      "सारा मुख्य लॉजिक लोकली चलता है। AI निर्णय वृक्ष बिना क्लाउड निर्भरता के लक्षणों को प्रोसेस करते हैं।",
+      "स्वास्थ्य रिकॉर्ड के लिए इंटेलिजेंट कैशिंग के साथ कम बैंडविड्थ वाले वातावरण के लिए अनुकूलित।",
     "landing.tech.edgeai.title": "एज AI मॉडल",
     "landing.tech.edgeai.desc":
       "ग्रामीण कनेक्टिविटी के लिए अनुकूलित हल्का ML मॉडल। उन्नत विश्लेषण हेतु Gemini API।",
     "landing.tech.voice.title": "वॉइस प्रोसेसिंग",
     "landing.tech.voice.desc":
-      "हिंदी/अंग्रेजी में स्पीच-टू-टेक्स्ट और टेक्स्ट-टू-स्पीच। ऑन-डिवाइस प्रोसेसिंग से ऑफलाइन काम करता है।",
+      "सहज बातचीत के लिए हिंदी/अंग्रेजी में स्पीच-टू-टेक्स्ट और टेक्स्ट-टू-स्पीच।",
     "landing.tech.async.title": "एसिंक डेटा सिंक",
     "landing.tech.async.desc":
-      "अपॉइंटमेंट और रिकॉर्ड ऑफलाइन कतारबद्ध; कनेक्टिविटी लौटने पर डेटाबेस से ऑटो-सिंक।",
+      "कनेक्टिविटी स्थिर होने पर सिंक के लिए अपॉइंटमेंट और रिकॉर्ड कतारबद्ध।",
     "landing.tech.conflict.title": "कन्फ्लिक्ट रिज़ॉल्यूशन",
     "landing.tech.conflict.desc":
       "एक डिवाइस साझा करने वाले कई उपयोगकर्ताओं को संभालता है। स्मार्ट कैशिंग डुप्लिकेट एंट्री रोकती है।",
@@ -447,12 +399,12 @@ const translations = {
     "landing.impact.ruralPopulation": "ग्रामीण जनसंख्या तक पहुंच",
     "landing.impact.healthcareContinuity": "स्वास्थ्य सेवाओं की निरंतरता",
     "landing.impact.reductionWait": "प्रतीक्षा समय में कमी",
-    "landing.impact.internetRequired": "इंटरनेट आवश्यक नहीं",
+    "landing.impact.internetRequired": "कनेक्टिविटी अनुकूलित",
 
     // CTA Section
     "landing.cta.title": "स्वास्थ्य क्रांति से जुड़ें",
     "landing.cta.description":
-      "स्वास्थ्यमित्र सुलभ, ऑफलाइन-फर्स्ट स्वास्थ्य सेवा के साथ ग्रामीण समुदायों को सशक्त बना रहा है। इस मिशन का हिस्सा बनें।",
+      "स्वास्थ्यमित्र सुलभ, AI-संचालित स्वास्थ्य सेवा के साथ ग्रामीण समुदायों को सशक्त बना रहा है। इस मिशन का हिस्सा बनें।",
     "landing.cta.button": "आज ही शुरू करें",
 
     // Home Page
@@ -471,8 +423,6 @@ const translations = {
     "home.records.desc": "अपना चिकित्सा इतिहास और अपॉइंटमेंट प्रबंधित करें",
     "home.schedule": "अपॉइंटमेंट शेड्यूल करें",
     "home.schedule.desc": "स्वास्थ्य सेवा प्रदाताओं के साथ अपॉइंटमेंट बुक करें",
-    "home.map": "स्वास्थ्य सेवा मानचित्र",
-    "home.map.desc": "नजदीकी अस्पताल और क्लिनिक खोजें",
 
     // Consultation Page
     "consultation.title": "चिकित्सा परामर्श",
@@ -505,7 +455,6 @@ const translations = {
     "doctors.specialty": "विशेषज्ञता",
     "doctors.location": "स्थान",
     "doctors.book": "अपॉइंटमेंट बुक करें",
-    "doctors.video": "वीडियो परामर्श",
     "doctors.rating": "रेटिंग",
     "doctors.experience": "वर्ष अनुभव",
 
@@ -534,6 +483,7 @@ const translations = {
     "emergency.disclaimerText":
       "यह जानकारी केवल शैक्षिक उद्देश्यों के लिए है। चिकित्सा आपातकाल की स्थिति में, हमेशा तुरंत 108 पर कॉल करें। उचित प्रशिक्षण के बिना उन्नत चिकित्सा प्रक्रियाओं का प्रयास न करें। संदेह होने पर, पेशेवर चिकित्सा सहायता लें।",
     "emergency.backToHome": "होम पर वापस जाएं",
+    "emergency.banner.title": "चिकित्सा आपातकाल?",
     "emergency.banner.subtitle":
       "पूरे भारत में तुरंत एंबुलेंस सेवा के लिए 108 पर कॉल करें",
     "emergency.call108Now": "108 पर अभी कॉल करें",
@@ -669,43 +619,11 @@ const translations = {
     "schedule.alertFillRequired": "कृपया सभी आवश्यक फ़ील्ड भरें",
     "schedule.alertPhoneInvalid": "कृपया वैध फोन नंबर दर्ज करें",
 
-    // Map Page
-    "map.title": "स्वास्थ्य सेवा मानचित्र",
-    "map.subtitle": "नजदीकी अस्पताल, क्लिनिक और स्वास्थ्य सेवा सुविधाएं खोजें",
-    "map.hospitals": "अस्पताल",
-    "map.clinics": "क्लिनिक",
-    "map.pharmacies": "फार्मेसी",
-    "map.distance": "दूरी",
-    "map.open": "अभी खुला",
-    "map.emergencyBanner.title": "चिकित्सा आपातकाल?",
-    "map.emergencyBanner.subtitle": "तुरंत एंबुलेंस सेवा के लिए कॉल करें",
 
-    // Video Consult Page
-    "video.title": "वीडियो परामर्श",
-    "video.subtitle": "वीडियो कॉल के माध्यम से डॉक्टरों से जुड़ें",
-    "video.join": "कॉल में शामिल हों",
-    "video.mute": "म्यूट",
-    "video.camera": "कैमरा",
-    "video.end": "कॉल समाप्त करें",
-    "video.connected": "वीडियो कनेक्टेड",
-    "video.cameraOff": "कैमरा बंद",
-    "video.chatPlaceholder": "संदेश लिखें...",
-    "video.connecting.title": "कनेक्ट हो रहा है...",
-    "video.connecting.subtitle": "आपके वीडियो कॉल की सेटिंग हो रही है",
-    "video.connecting.permission": "कृपया कैमरा और माइक्रोफ़ोन की अनुमति दें",
-    "video.features.title": "वीडियो परामर्श की विशेषताएं",
-    "video.features.hd.title": "HD वीडियो गुणवत्ता",
-    "video.features.hd.desc":
-      "एडैप्टिव स्ट्रीमिंग के साथ क्रिस्टल क्लियर वीडियो",
-    "video.features.share.title": "स्क्रीन शेयरिंग",
-    "video.features.share.desc":
-      "परामर्श के दौरान रिपोर्ट और टेस्ट परिणाम साझा करें",
-    "video.features.chat.title": "रीयल-टाइम चैट",
-    "video.features.chat.desc": "बेहतर संचार के लिए वीडियो के साथ टेक्स्ट चैट",
 
     // Landing Footer
     "landing.footer.tagline":
-      "ग्रामीण भारत के लिए ऑफलाइन-फर्स्ट AI स्वास्थ्य सेवा",
+      "ग्रामीण भारत के लिए सुलभ AI स्वास्थ्य सेवा",
     "landing.footer.sections.product": "उत्पाद",
     "landing.footer.sections.company": "कंपनी",
     "landing.footer.sections.legal": "कानूनी",
@@ -738,13 +656,7 @@ const translations = {
     "common.personalInfo": "व्यक्तिगत जानकारी",
     "common.appointmentDetails": "अपॉइंटमेंट विवरण",
     "common.viewAppointments": "मेरे अपॉइंटमेंट देखें",
-    "common.searchLocation": "नाम या स्थान से खोजें...",
-    "common.allTypes": "सभी प्रकार",
-    "common.myLocation": "मेरा स्थान",
-    "common.facilitiesFound": "सुविधाएं मिलीं",
-    "common.directions": "दिशा निर्देश",
     "common.available": "उपलब्ध",
-    "common.startVideoCall": "वीडियो कॉल शुरू करें",
     "common.currentlyUnavailable": "वर्तमान में अनुपलब्ध",
     "common.addRecord": "रिकॉर्ड जोड़ें",
     "common.allRecords": "सभी रिकॉर्ड",

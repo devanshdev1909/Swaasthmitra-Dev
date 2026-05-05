@@ -12,8 +12,8 @@ It aims to bring accessible healthcare services to users by offering:
 - 🤖 AI-driven medical consultation (chatbot)  
 - 👨‍⚕️ Doctor search & appointment booking  
 - 🚨 Emergency services info & first-aid guidance  
-- 🗺️ Interactive map for nearby healthcare facilities  
 - 📂 Personal health record management  
+- 🌐 Multi-language support (English & Hindi)
 
 ---
 
@@ -40,10 +40,6 @@ It aims to bring accessible healthcare services to users by offering:
 - Guide for 6 critical emergencies with first-aid instructions (CPR, choking, burns, etc.)  
 - Symptom identification and response actions  
 
-### 🗺️ Interactive Healthcare Map
-- Map with facility locations (hospitals, clinics, pharmacies, ambulances) via **Leaflet + OpenStreetMap**  
-- Facility filtering and search  
-- GPS location + click-to-zoom + directions support  
 
 ### 📅 Appointment Scheduling
 - Booking form with patient details, specialty, date/time, reason for visit, notes  
@@ -58,12 +54,11 @@ It aims to bring accessible healthcare services to users by offering:
 ---
 
 ## 🛠️ Tech Stack
-- **Frontend:** React 18 + TypeScript (built with Vite)  
+- **Frontend:** React 18 + JavaScript (built with Vite)  
 - **Styling:** Tailwind CSS v3  
 - **Routing:** React Router DOM  
 - **AI:** Google Gemini via `@google/generative-ai` + Axios  
 - **Storage:** IndexedDB via Dexie.js (local client storage)  
-- **Maps:** Leaflet + react-leaflet (OpenStreetMap)  
 
 ---
 
@@ -100,11 +95,8 @@ In emergencies — **dial 108** (or your local ambulance number).
 ## 🌱 Future Enhancements (Planned)
 
 - 🎙️ **Voice input/output** for consultations  
-- 🌐 **Multi-language support** (Hindi, Tamil, Telugu, Bengali)  
-- 📱 **Offline/PWA capabilities**  
 - 🔐 **User authentication & profiles**  
 - 🔔 **Real-time notifications & doctor availability**  
-- 📹 **Telemedicine video consultations**  
 - 📄 **Prescription upload with OCR**  
 - ⏰ **Medicine reminders & vitals tracking** (BP, glucose, weight)  
 - 👨‍👩‍👧 **Family health profiles**, lab test booking, pharmacy delivery, insurance integration  

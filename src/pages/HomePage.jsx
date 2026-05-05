@@ -2,11 +2,9 @@ import { Link } from "react-router-dom";
 import {
   FaStethoscope,
   FaCalendarAlt,
-  FaMapMarkedAlt,
   FaUserMd,
   FaAmbulance,
   FaHeartbeat,
-  FaVideo,
 } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -28,14 +26,6 @@ const HomePage = () => {
       icon: <FaCalendarAlt className="text-5xl" />,
       color: "from-blue-500 to-cyan-600",
       link: "/schedule",
-    },
-    {
-      id: "map",
-      title: t("home.map"),
-      description: t("home.map.desc"),
-      icon: <FaMapMarkedAlt className="text-5xl" />,
-      color: "from-purple-500 to-pink-600",
-      link: "/map",
     },
     {
       id: "doctors",
@@ -61,14 +51,6 @@ const HomePage = () => {
       color: "from-teal-500 to-green-600",
       link: "/records",
     },
-    {
-      id: "video-consult",
-      title: t("video.title"),
-      description: t("video.subtitle"),
-      icon: <FaVideo className="text-5xl" />,
-      color: "from-indigo-500 to-blue-600",
-      link: "/video-consult",
-    },
   ];
 
   return (
@@ -84,7 +66,7 @@ const HomePage = () => {
           </p>
           <div className="inline-flex items-center space-x-2 bg-green-100 text-green-800 px-6 py-3 rounded-full">
             <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
-            <span className="font-semibold">Available Offline</span>
+            <span className="font-semibold">Always Available</span>
           </div>
         </div>
 

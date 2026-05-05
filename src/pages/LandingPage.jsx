@@ -148,10 +148,6 @@ const LandingPage = () => {
                   <span className="text-primary mr-2">✓</span>
                   <span>{t("landing.solution.point4")}</span>
                 </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">✓</span>
-                  <span>{t("landing.solution.point5")}</span>
-                </li>
               </ul>
             </div>
           </div>
@@ -207,7 +203,7 @@ const LandingPage = () => {
                 labelKey: "landing.impact.healthcareContinuity",
               },
               { number: "60%", labelKey: "landing.impact.reductionWait" },
-              { number: "0", labelKey: "landing.impact.internetRequired" },
+              { number: "Low", labelKey: "landing.impact.internetRequired" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-5xl font-bold mb-2">{stat.number}</div>

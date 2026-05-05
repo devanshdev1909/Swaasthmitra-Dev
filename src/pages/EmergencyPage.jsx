@@ -173,7 +173,7 @@ const EmergencyPage = () => {
             <div className="card bg-gradient-to-r from-red-500 to-red-600 text-white text-center p-8">
               <FaAmbulance className="text-6xl mx-auto mb-4" />
               <h2 className="text-3xl font-bold mb-2">
-                {t("map.emergencyBanner.title")}
+                {t("emergency.banner.title")}
               </h2>
               <p className="text-xl mb-6">{t("emergency.banner.subtitle")}</p>
               <a
